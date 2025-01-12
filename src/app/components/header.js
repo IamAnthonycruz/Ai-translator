@@ -7,6 +7,7 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import Link from "next/link";
+import { MenuBtn } from "./menu-btn";
 export const Header = () => {
   return (
     <header className="sticky inset-x-0 top-0 z-30 w-full transition-all bg-white/20 backdrop-blur-sm">
@@ -20,10 +21,8 @@ export const Header = () => {
             </button>
           </SignedOut>
           <SignedIn>
-            <Link
-              className="mr-2 border rounded-md p-2"
-              href="/translations"
-            ></Link>
+            <div className="flex"></div>
+            <MenuBtn />
             <UserButton />
           </SignedIn>
         </div>
