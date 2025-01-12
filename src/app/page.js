@@ -21,6 +21,11 @@ export default function Home() {
   const [languageTo, setLanguageTo] = useState("es");
   const [inputText, setInputText] = useState("");
   const [translatedText, setTranslatedText] = useState("");
+  const [isSaved, setIsSaved] = useState(false);
+
+  const onSave = () => {
+    setIsSaved(true);
+  };
   const handleLanguageFromChange = (value) => {
     setLanguageFrom(value);
   };
@@ -47,6 +52,9 @@ export default function Home() {
           action={async (formData) => {
             const result = await translate(formData);
             setTranslatedText(result.translation);
+            if (isSaved) {
+              setIsSaved(false);
+            }
           }}
         >
           <div className="flex flex-row gap-4">
@@ -80,7 +88,9 @@ export default function Home() {
                 sourceLan={languageFrom}
                 targetLan={languageTo}
                 sourceText={inputText}
-                translatedText={translatedText}
+                targetText={translatedText}
+                onHandleSave={onSave}
+                isSaved={isSaved}
               />
               <textarea
                 placeholder="Translated text will appear"
